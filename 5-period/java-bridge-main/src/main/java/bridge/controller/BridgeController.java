@@ -17,20 +17,24 @@ public class BridgeController {
         this.userBridge = new UserBridge();
     }
 
-    public void run() {
+    public void setUp() {
         OutputView.printStartMessage();
         final int bridgeSize = InputView.readBridgeSize();
         bridgeGame.setBridgeGame(bridgeSize);
-        while(userBridge.getUp().size() < bridgeSize) {
-            final String moving = InputView.readMoving();
-            bridgeGame.move(moving, userBridge);
-            OutputView.printMap(new UserBridgeDto(userBridge));
-        }
-        count++;
+        run(bridgeSize);
+    }
+
+    private void run(int bridgeSize) {
+        processGame(bridgeSize);
+
         if(bridgeGame.isFailed(userBridge)) {
             final String gameCommand = InputView.readGameCommand();
             if(gameCommand.equals("Q")) {
                 OutputView.printResult("실패", count, new UserBridgeDto(userBridge));
+            }
+            if(gameCommand.equals("R")) {
+                this.userBridge = new UserBridge();
+                run(bridgeSize);
             }
 
         }else{
@@ -38,4 +42,14 @@ public class BridgeController {
         }
 
     }
+
+    private void processGame(final int bridgeSize) {
+        while(userBridge.getUp().size() < bridgeSize) {
+            final String moving = InputView.readMoving();
+            bridgeGame.move(moving, userBridge);
+            OutputView.printMap(new UserBridgeDto(userBridge));
+        }
+        count++;
+    }
+
 }
