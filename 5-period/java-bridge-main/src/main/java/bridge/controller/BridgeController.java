@@ -27,7 +27,12 @@ public class BridgeController {
             OutputView.printMap(new UserBridgeDto(userBridge));
         }
         count++;
-
+        if(bridgeGame.isFailed(userBridge)) {
+            final String gameCommand = InputView.readGameCommand();
+            if(gameCommand.equals("Q")) {
+                // 게임 결과 출력
+            }
+        }
 
     }
 }

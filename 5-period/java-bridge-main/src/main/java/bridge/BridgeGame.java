@@ -20,6 +20,12 @@ public class BridgeGame {
         this.answerBridge = bridgeMaker.makeBridge(size);
     }
 
+    public boolean isFailed(UserBridge userBridge) {
+        final List<String> up = userBridge.getUp();
+        final List<String> down = userBridge.getDown();
+        return up.contains("X") || down.contains("X");
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
