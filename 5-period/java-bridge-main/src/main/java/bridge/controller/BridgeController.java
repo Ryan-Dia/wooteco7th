@@ -9,7 +9,7 @@ import bridge.model.UserBridge;
 public class BridgeController {
 
     private final BridgeGame bridgeGame;
-    private final UserBridge userBridge;
+    private UserBridge userBridge;
     private int count = 0;
 
     public BridgeController(BridgeGame bridgeGame) {
@@ -32,6 +32,9 @@ public class BridgeController {
             if(gameCommand.equals("Q")) {
                 // 게임 결과 출력
             }
+
+        }else{
+            OutputView.printResult("성공", count, new UserBridgeDto(userBridge));
         }
 
     }
