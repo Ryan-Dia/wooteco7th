@@ -1,9 +1,22 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final BridgeMaker bridgeMaker;
+    private List<String> answerBridge;
+
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+    }
+
+    public void setBridgeGame(int size) {
+        this.answerBridge = bridgeMaker.makeBridge(size);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
