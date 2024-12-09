@@ -30,7 +30,7 @@ public class BridgeController {
         if(bridgeGame.isFailed(userBridge)) {
             final String gameCommand = InputView.readGameCommand();
             if(gameCommand.equals("Q")) {
-                // 게임 결과 출력
+                OutputView.printResult("실패", count, new UserBridgeDto(userBridge));
             }
 
         }else{
