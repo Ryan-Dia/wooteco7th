@@ -2,6 +2,7 @@ package christmas.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,7 +30,7 @@ public class Order {
     }
 
     private int calculateTotalAmount() {
-        return Menus.calculateTotalAmount(order.keySet().toArray(new String[0]));
+        return Menus.calculateTotalAmount(order.entrySet());
     }
 
     private void validateOrder() {

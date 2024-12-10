@@ -3,28 +3,30 @@ package christmas.model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 
 public enum Menus {
     Appetizer(
-            new MenuItem("양송이수프", 6000),
-            new MenuItem("타파스", 5500),
-            new MenuItem("시저샐러드", 8000)
+            new MenuItem("양송이수프", 6_000),
+            new MenuItem("타파스", 5_500),
+            new MenuItem("시저샐러드", 8_000)
     ),
     MAIN(
-            new MenuItem("티본스테이크", 55000),
-            new MenuItem("바비큐립", 54000),
-            new MenuItem("해산물파스타", 35000),
-            new MenuItem("크리스마스파스타", 25000)
+            new MenuItem("티본스테이크", 55_000),
+            new MenuItem("바비큐립", 54_000),
+            new MenuItem("해산물파스타", 35_000),
+            new MenuItem("크리스마스파스타", 25_000)
     ),
     DESSERT(
-            new MenuItem("초코케이크", 15000),
-            new MenuItem("아이스크림", 5000)
+            new MenuItem("초코케이크", 15_000),
+            new MenuItem("아이스크림", 5_000)
     ),
     Beverage(
-            new MenuItem("제로콜라", 3000),
-            new MenuItem("레드와인", 60000),
-            new MenuItem("샴페인", 25000)
+            new MenuItem("제로콜라", 3_000),
+            new MenuItem("레드와인", 60_000),
+            new MenuItem("샴페인", 25_000)
     );
 
     private final MenuItem[] menuItems;
@@ -70,12 +72,13 @@ public enum Menus {
         return mainMenus;
     }
 
-    public static int calculateTotalAmount(String[] menuNames) {
+    public static int calculateTotalAmount(Set<Entry<String, Integer>> menus) {
         int totalAmount = 0;
-        for (String menuName : menuNames) {
+
+        for (Entry<String, Integer> menu : menus) {
             totalAmount += Arrays.stream(Menus.values())
                     .mapToInt(o -> Arrays.stream(o.menuItems).
-                            filter(k -> k.name().equals(menuName)).mapToInt(t->t.price()).sum())
+                            filter(k -> k.name().equals(menu.getKey())).mapToInt(t->t.price() * menu.getValue()).sum())
                     .sum();
 
         }

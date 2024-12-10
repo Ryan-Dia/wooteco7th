@@ -4,4 +4,8 @@ public record Discount(int christmas, int weekDay, int weekEnd, int presentation
     public int totalBenefitAmount() {
         return christmas + weekDay + weekEnd + presentation + special;
     }
+
+    public int totalBenefitAmountWithoutPresentation() {
+        return christmas + weekDay + weekEnd + special;
+    }
 }

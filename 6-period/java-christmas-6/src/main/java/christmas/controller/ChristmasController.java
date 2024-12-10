@@ -23,6 +23,7 @@ public class ChristmasController {
         Event event = new Event(visitingDay, presentation.getBenefitAmount());
         OutputView.printBenefit(event.getDiscount(new OrderMenusDto(order.getOrder())));
         OutputView.printTotalBenefitAmount(event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmount());
+        OutputView.printTotalAmountAfterDiscount(order.getTotalAmount(), event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmountWithoutPresentation());
     }
 
     private VisitingDay getVisitingDay() {
