@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.dto.OrderMenusDto;
 import christmas.dto.PresentationDto;
+import christmas.model.Badge;
 import christmas.model.Event;
 import christmas.model.Order;
 import christmas.model.Presentation;
@@ -24,6 +25,8 @@ public class ChristmasController {
         OutputView.printBenefit(event.getDiscount(new OrderMenusDto(order.getOrder())));
         OutputView.printTotalBenefitAmount(event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmount());
         OutputView.printTotalAmountAfterDiscount(order.getTotalAmount(), event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmountWithoutPresentation());
+        OutputView.printBadge(Badge.getBadge(event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmount()));
+
     }
 
     private VisitingDay getVisitingDay() {
