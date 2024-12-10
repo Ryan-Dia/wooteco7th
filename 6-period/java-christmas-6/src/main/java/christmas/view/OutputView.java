@@ -20,7 +20,7 @@ public final class OutputView {
     }
 
     public static void printTotalAmount(int totalAmount) {
-        System.out.println("\n<할인 전 총 주문 금액>");
+        System.out.println("\n<할인 전 총주문 금액>");
         System.out.printf("%,d원%n", totalAmount);
     }
 
@@ -57,7 +57,7 @@ public final class OutputView {
             System.out.printf("증정 이벤트: -%,d%n", presentation);
         }
         if(special  == 0 && presentation == 0 && weekDay == 0 && weekEnd == 0 && christmas == 0) {
-            System.out.println("없음%n");
+            System.out.println("없음");
         }
     }
 
