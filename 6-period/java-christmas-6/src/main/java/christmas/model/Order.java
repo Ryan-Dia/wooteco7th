@@ -1,17 +1,15 @@
 package christmas.model;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class Order {
     private static final String REGEX = "^([\\w가-힣\\s]+-\\d+)(,\\s*[\\w가-힣\\s]+-\\d+)*$";
     private final Map<String, Integer> order = new HashMap<>();
+    private final int totalAmount;
 
 
 
@@ -27,6 +25,11 @@ public class Order {
             order.put(menu, price);
         }
         validateOrder();
+        this.totalAmount = calculateTotalAmount();
+    }
+
+    private int calculateTotalAmount() {
+        return Menus.calculateTotalAmount(order.keySet().toArray(new String[0]));
     }
 
     private void validateOrder() {
@@ -44,7 +47,7 @@ public class Order {
 
     private void NotOnlyBeverage() {
         final Set<String> menuNames = order.keySet();
-        final boolean isOnlyBeverage = menuNames.stream().anyMatch(menuName -> Menus.isBeverage(menuName.toString()));
+        final boolean isOnlyBeverage = menuNames.stream().allMatch(menuName -> Menus.isBeverage(menuName.toString()));
         if(isOnlyBeverage) {
             throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다.");
         }
@@ -61,5 +64,13 @@ public class Order {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. - 형식");
         }
         return input.split(",");
+    }
+
+    public Map<String, Integer> getOrder() {
+        return order;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
     }
 }

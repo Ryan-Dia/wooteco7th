@@ -47,4 +47,16 @@ public enum Menus {
         return Arrays.stream(Menus.Beverage.menuItems)
                 .anyMatch(beverage -> beverage.name().equals(menuName));
     }
+
+    public static int calculateTotalAmount(String[] menuNames) {
+        int totalAmount = 0;
+        for (String menuName : menuNames) {
+            totalAmount += Arrays.stream(Menus.values())
+                    .mapToInt(o -> Arrays.stream(o.menuItems).
+                            filter(k -> k.name().equals(menuName)).mapToInt(t->t.price()).sum())
+                    .sum();
+
+        }
+        return totalAmount;
+    }
 }
