@@ -1,6 +1,8 @@
 package christmas.model;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public enum Menus {
@@ -46,6 +48,26 @@ public enum Menus {
     public static boolean isBeverage(String menuName) {
         return Arrays.stream(Menus.Beverage.menuItems)
                 .anyMatch(beverage -> beverage.name().equals(menuName));
+    }
+
+    public static Map<String, Integer> findDesserts(String[] menuNames) {
+        Map<String, Integer> desserts = new HashMap<>();
+        for (MenuItem item : Menus.DESSERT.menuItems) {
+            if(Arrays.stream(menuNames).anyMatch(item.name()::equals)) {
+                desserts.put(item.name(), item.price());
+            }
+        }
+        return desserts;
+    }
+
+    public static Map<String, Integer> findMainMenuByMenuNames(String[] menuNames) {
+        Map<String, Integer> mainMenus = new HashMap<>();
+        for (MenuItem item : Menus.MAIN.menuItems) {
+            if(Arrays.stream(menuNames).anyMatch(item.name()::equals)) {
+                mainMenus.put(item.name(), item.price());
+            }
+        }
+        return mainMenus;
     }
 
     public static int calculateTotalAmount(String[] menuNames) {

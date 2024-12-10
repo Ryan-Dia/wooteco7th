@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.dto.OrderMenusDto;
 import christmas.dto.PresentationDto;
+import christmas.model.Event;
 import christmas.model.Order;
 import christmas.model.Presentation;
 import christmas.utils.LoopTemplate;
@@ -17,7 +18,10 @@ public class ChristmasController {
         Order order = getOrder();
         OutputView.printOrderMenus(new OrderMenusDto(order.getOrder()));
         OutputView.printTotalAmount(order.getTotalAmount());
-        OutputView.printPresentation(new PresentationDto(new Presentation(order.getTotalAmount())));
+        final Presentation presentation = new Presentation(order.getTotalAmount());
+        OutputView.printPresentation(new PresentationDto(presentation));
+        Event event = new Event(visitingDay, presentation.getBenefitAmount());
+        OutputView.printBenefit(event.getDiscount(new OrderMenusDto(order.getOrder())));
     }
 
     private VisitingDay getVisitingDay() {

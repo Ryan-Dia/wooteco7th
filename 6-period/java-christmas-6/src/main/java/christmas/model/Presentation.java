@@ -12,7 +12,10 @@ public class Presentation {
     }
 
     private static int calculateCount(int totalAmount) {
-        return totalAmount / BASE_AMOUNT;
+        if(totalAmount >= BASE_AMOUNT) {
+            return 1;
+        }
+        return 0;
     }
 
     private static int calculateBenefitAmount(int count) {

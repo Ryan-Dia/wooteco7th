@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.dto.OrderMenusDto;
 import christmas.dto.PresentationDto;
+import christmas.model.Discount;
 import java.util.Map.Entry;
 
 public final class OutputView {
@@ -31,5 +32,33 @@ public final class OutputView {
             return;
         }
         System.out.printf("샴페인 %d개\n", count);
+    }
+
+    public static void printBenefit(Discount discount) {
+        System.out.println("<혜택 내역>");
+        final int christmas = discount.christmas();
+        final int weekEnd = discount.weekEnd();
+        final int weekDay = discount.weekDay();
+        final int presentation = discount.presentation();
+        final int special = discount.special();
+        if(christmas != 0) {
+            System.out.printf("크리스마스 디데이 할인: -%,d\n", christmas);
+        }
+        if(weekEnd != 0) {
+            System.out.printf("주말 할인: -%,d\n", weekEnd);
+        }
+        if(weekDay != 0) {
+            System.out.printf("평일 할인: -%,d\n", weekDay);
+        }
+        if(special != 0) {
+            System.out.printf("특별 할인: -%,d\n", special);
+        }
+        if(presentation != 0) {
+            System.out.printf("증정 이벤트: -%,d", presentation);
+        }
+        if(special  == 0 && presentation == 0 && weekDay == 0 && weekEnd == 0 && christmas == 0) {
+            System.out.println("없음");
+        }
+
     }
 }
