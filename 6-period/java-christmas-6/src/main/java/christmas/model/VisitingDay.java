@@ -1,4 +1,4 @@
-package christmas.utils;
+package christmas.model;
 
 public class VisitingDay {
     private final int visitingDay;
