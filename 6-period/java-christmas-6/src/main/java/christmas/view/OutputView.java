@@ -21,7 +21,7 @@ public final class OutputView {
 
     public static void printTotalAmount(int totalAmount) {
         System.out.println("\n<할인 전 총 주문 금액>");
-        System.out.printf("%,d원", totalAmount);
+        System.out.printf("%,d원%n", totalAmount);
     }
 
     public static void printPresentation(PresentationDto presentationDto) {
@@ -35,30 +35,38 @@ public final class OutputView {
     }
 
     public static void printBenefit(Discount discount) {
-        System.out.println("<혜택 내역>");
+        System.out.println("\n<혜택 내역>");
         final int christmas = discount.christmas();
         final int weekEnd = discount.weekEnd();
         final int weekDay = discount.weekDay();
         final int presentation = discount.presentation();
         final int special = discount.special();
         if(christmas != 0) {
-            System.out.printf("크리스마스 디데이 할인: -%,d\n", christmas);
+            System.out.printf("크리스마스 디데이 할인: -%,d%n", christmas);
         }
         if(weekEnd != 0) {
-            System.out.printf("주말 할인: -%,d\n", weekEnd);
+            System.out.printf("주말 할인: -%,d%n", weekEnd);
         }
         if(weekDay != 0) {
-            System.out.printf("평일 할인: -%,d\n", weekDay);
+            System.out.printf("평일 할인: -%,d%n", weekDay);
         }
         if(special != 0) {
-            System.out.printf("특별 할인: -%,d\n", special);
+            System.out.printf("특별 할인: -%,d%n", special);
         }
         if(presentation != 0) {
-            System.out.printf("증정 이벤트: -%,d", presentation);
+            System.out.printf("증정 이벤트: -%,d%n", presentation);
         }
         if(special  == 0 && presentation == 0 && weekDay == 0 && weekEnd == 0 && christmas == 0) {
-            System.out.println("없음");
+            System.out.println("없음%n");
         }
+    }
 
+    public static void printTotalBenefitAmount(int totalAmount) {
+        System.out.println("\n<총혜택 금액>");
+        if(totalAmount == 0) {
+            System.out.println("0원");
+            return;
+        }
+        System.out.printf("-%,d원%n", totalAmount);
     }
 }
