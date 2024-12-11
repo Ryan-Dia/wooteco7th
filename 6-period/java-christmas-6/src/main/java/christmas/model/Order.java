@@ -2,13 +2,12 @@ package christmas.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
-    private static final String REGEX = "^([\\w가-힣\\s]+-\\d+)(,\\s*[\\w가-힣\\s]+-\\d+)*$";
+    private static final String REGEX = "^([가-힣]+-\\d{1,2})(,[가-힣]+-\\d{1,2})*$";
     private final Map<String, Integer> order = new HashMap<>();
     private final int totalAmount;
 

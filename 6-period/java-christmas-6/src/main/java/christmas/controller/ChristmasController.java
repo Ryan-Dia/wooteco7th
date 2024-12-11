@@ -27,7 +27,6 @@ public class ChristmasController {
         OutputView.printTotalBenefitAmount(event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmount());
         OutputView.printTotalAmountAfterDiscount(order.getTotalAmount(), event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmountWithoutPresentation());
         OutputView.printBadge(Badge.getBadge(event.getDiscount(new OrderMenusDto(order.getOrder())).totalBenefitAmount()));
-
     }
 
     private VisitingDay getVisitingDay() {
