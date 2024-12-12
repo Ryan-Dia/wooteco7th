@@ -49,10 +49,6 @@ public class Recommender {
 
     }
 
-    private void validateCategoryDuplication(Map<String, Integer> box, String category) {
-
-    }
-
     private String recommendMenu(Coach coach, String category) {
         final Inedible inedible = coach.getInedible();
         final List<String> dishes = Menu.findDishesByCategory(category);
