@@ -1,5 +1,6 @@
 package menu.model.coach;
 
+import java.util.Objects;
 import menu.error.CIllegalArgumentException;
 import menu.error.ErrorMessages;
 
@@ -8,6 +9,7 @@ public class Coach {
     private static final int NAME_LENGTH_MAX = 4;
     private static final String REGEX = "^[가-힣]+";
     private final String name;
+    private Inedible inedible;
 
     public Coach(final String name) {
         validateNameLength(name);
@@ -27,7 +29,28 @@ public class Coach {
         }
     }
 
+    public void setInedible(Inedible inedible) {
+        this.inedible = inedible;
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Coach coach = (Coach) o;
+        return Objects.equals(name, coach.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }
