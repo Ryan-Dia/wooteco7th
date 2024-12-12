@@ -2,6 +2,7 @@ package menu.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,13 +28,29 @@ public class Recommender {
     }
 
     public void recommend(Coaches coaches) {
-        final String category = categoryMaker.run().getCategory();
+        Map<String, Integer> box = new HashMap<>();
+        final String category = getCategory(box);
         categoryBox.add(category);
         for (Coach coach : coaches.getCoaches()) {
             final String menu = recommendMenu(coach, category);
             final String name = coach.getName();
             recommendMenuBox.computeIfAbsent(name, k -> new ArrayList<>()).add(menu);
         }
+    }
+
+    private String getCategory(Map<String, Integer> box) {
+        while (true) {
+            final String category = categoryMaker.run().getCategory();
+            if (box.getOrDefault(category, 0) < 2) {
+                box.put(category, box.getOrDefault(category, 0) + 1);
+                return category;
+            }
+        }
+
+    }
+
+    private void validateCategoryDuplication(Map<String, Integer> box, String category) {
+
     }
 
     private String recommendMenu(Coach coach, String category) {
