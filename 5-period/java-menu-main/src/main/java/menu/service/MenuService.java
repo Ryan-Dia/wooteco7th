@@ -3,6 +3,7 @@ package menu.service;
 import java.util.List;
 import menu.model.coach.Coach;
 import menu.model.coach.Coaches;
+import menu.model.coach.Inedible;
 import menu.utils.StringParser;
 
 public class MenuService {
@@ -21,4 +22,10 @@ public class MenuService {
     }
 
 
+    public Inedible generateInedible(final String userInput) {
+        if (userInput.isEmpty()) {
+            return new Inedible(null);
+        }
+        return new Inedible(StringParser.parseToTokens(userInput, ","));
+    }
 }
