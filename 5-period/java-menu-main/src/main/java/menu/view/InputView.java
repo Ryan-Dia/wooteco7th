@@ -7,8 +7,8 @@ public final class InputView {
     private InputView() {
     }
 
-    public static String read() {
-        System.out.println("");
+    public static String readCoachName() {
+        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String input = Console.readLine().strip();
 
         if (input.isEmpty()) {
