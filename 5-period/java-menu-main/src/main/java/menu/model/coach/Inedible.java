@@ -16,6 +16,10 @@ public class Inedible {
         this.inedible = inedible;
     }
 
+    public boolean contain(String menu) {
+        return inedible.contains(menu);
+    }
+
     private void validateCount(List<String> inedible) {
         if (inedible.size() > INEDIBLE_MAX) {
             throw new CIllegalArgumentException(ErrorMessages.INEDIBLE_COUNT);

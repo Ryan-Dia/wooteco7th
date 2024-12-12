@@ -2,6 +2,8 @@ package menu.model;
 
 import java.util.Arrays;
 import java.util.List;
+import menu.error.CIllegalArgumentException;
+import menu.error.ErrorMessages;
 
 public enum Menu {
     JAPAN("일식", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")),
@@ -20,6 +22,14 @@ public enum Menu {
 
     public static boolean hasMenu(String menuName) {
         return Arrays.stream(Menu.values()).anyMatch(menu -> menu.dishes.contains(menuName));
+    }
+
+    public static List<String> findDishesByCategory(String category) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.category.equals(category))
+                .map(Menu::getDishes)
+                .findAny()
+                .orElseThrow(() -> new CIllegalArgumentException(ErrorMessages.INVALID_CATEGORY));
     }
 
     public List<String> getDishes() {

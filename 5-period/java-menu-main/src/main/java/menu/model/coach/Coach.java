@@ -37,6 +37,10 @@ public class Coach {
         return name;
     }
 
+    public Inedible getInedible() {
+        return inedible;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
