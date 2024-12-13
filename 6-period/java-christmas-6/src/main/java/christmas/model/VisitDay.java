@@ -6,6 +6,8 @@ import christmas.utils.WeekdayChecker;
 import java.util.List;
 
 public class VisitDay {
+    private static final int MIN_DAY = 1;
+    private static final int MAX_DAY = 31;
     private final int visitDay;
     private final List<Integer> specialDay = List.of(3, 10, 17, 24, 25, 31);
 
@@ -23,7 +25,7 @@ public class VisitDay {
     }
 
     private void validate(int visitDay) {
-        NumberValidator.validateRange(visitDay, 1, 31, ErrorMessages.INVALID_ORDER);
+        NumberValidator.validateRange(visitDay, MIN_DAY, MAX_DAY, ErrorMessages.INVALID_ORDER);
     }
 
     public int getVisitDay() {
