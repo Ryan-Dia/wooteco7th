@@ -33,6 +33,13 @@ public class Event {
         return christmasDiscount + weekDiscount + (isSpecialDay ? 1000 : 0) + (canPresent ? 25000 : 0);
     }
 
+    public int totalAmountAfterDiscount(VisitDay visitDay, Orders orders) {
+        final int christmasDiscount = calculateChristmasDiscount(visitDay.getVisitDay());
+        final int weekDiscount = calculateWeekDiscount(visitDay, orders);
+        final boolean isSpecialDay = isSpecialDay(visitDay);
+        return christmasDiscount + weekDiscount + (isSpecialDay ? 1000 : 0);
+    }
+
     public int calculateChristmasDiscount(int visitDay) {
         if (canChristmasDiscount(visitDay)) {
             return (visitDay - 1) * 100 + CHRISTMAS_BASE_DISCOUNT_AMOUNT;

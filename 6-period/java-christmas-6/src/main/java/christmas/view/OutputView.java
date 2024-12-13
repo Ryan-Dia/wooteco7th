@@ -60,8 +60,13 @@ public final class OutputView {
         }
     }
 
-    public static void printTotalBenefitAmount(int totalBenefitAMount) {
+    public static void printTotalBenefitAmount(final int totalBenefitAMount) {
         System.out.println("\n<총혜택 금액>");
         System.out.printf("-%,d원%n", totalBenefitAMount);
+    }
+
+    public static void printTotalAmountAfterDiscount(final int totalAmount, final int totalAmountAfterDiscount) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원%n", totalAmount - totalAmountAfterDiscount);
     }
 }
