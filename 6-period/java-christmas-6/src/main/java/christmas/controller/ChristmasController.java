@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.dto.OrdersDto;
 import christmas.error.CIllegalArgumentException;
 import christmas.error.ErrorMessages;
 import christmas.model.Menu;
@@ -18,7 +19,7 @@ public class ChristmasController {
         OutputView.printStartMessage();
         VisitDay visitDay = getVisitDay();
         Orders orders = getOrders();
-
+        OutputView.printOrderMenu(new OrdersDto(orders), visitDay);
     }
 
     private VisitDay getVisitDay() {
