@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.dto.OrdersDto;
 import christmas.error.CIllegalArgumentException;
 import christmas.error.ErrorMessages;
+import christmas.model.Badge;
 import christmas.model.Event;
 import christmas.model.Menu;
 import christmas.model.VisitDay;
@@ -33,6 +34,7 @@ public class ChristmasController {
         OutputView.printTotalBenefitAmount(event.totalBenefitAmount(visitDay, orders));
         OutputView.printTotalAmountAfterDiscount(orders.getTotalAmount(),
                 event.totalAmountAfterDiscount(visitDay, orders));
+        OutputView.printBadge(Badge.findByTotalBenefitAmount(event.totalBenefitAmount(visitDay, orders)));
     }
 
     private VisitDay getVisitDay() {

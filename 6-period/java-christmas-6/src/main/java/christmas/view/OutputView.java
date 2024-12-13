@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.dto.OrderDto;
 import christmas.dto.OrdersDto;
+import christmas.model.Badge;
 import christmas.model.Benefit;
 import christmas.model.VisitDay;
 
@@ -68,5 +69,14 @@ public final class OutputView {
     public static void printTotalAmountAfterDiscount(final int totalAmount, final int totalAmountAfterDiscount) {
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.printf("%,d원%n", totalAmount - totalAmountAfterDiscount);
+    }
+
+    public static void printBadge(final Badge badge) {
+        System.out.println("\n<12월 이벤트 배지>");
+        if (badge.getPrice() == 0) {
+            System.out.println("없음");
+            return;
+        }
+        System.out.println(badge.getType());
     }
 }
