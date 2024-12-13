@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.dto.OrdersDto;
 import christmas.error.CIllegalArgumentException;
 import christmas.error.ErrorMessages;
+import christmas.model.Event;
 import christmas.model.Menu;
 import christmas.model.VisitDay;
 import christmas.model.order.Order;
@@ -15,12 +16,19 @@ import java.util.List;
 
 public class ChristmasController {
 
+    private final Event event;
+
+    public ChristmasController(final Event event) {
+        this.event = event;
+    }
+
     public void run() {
         OutputView.printStartMessage();
         VisitDay visitDay = getVisitDay();
         Orders orders = getOrders();
         OutputView.printOrderMenu(new OrdersDto(orders), visitDay);
         OutputView.printTotalAmountBeforeDiscount(orders.getTotalAmount());
+        OutputView.printPresentation(event.canPresent(orders.getTotalAmount()));
     }
 
     private VisitDay getVisitDay() {
