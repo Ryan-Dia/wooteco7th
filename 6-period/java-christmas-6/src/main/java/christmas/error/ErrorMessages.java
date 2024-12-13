@@ -2,9 +2,9 @@ package christmas.error;
 
 public enum ErrorMessages {
     EMPTY_INPUT("빈 값을 입력할 수 없습니다."),
-    INVALID_DATE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
-    INVALID_ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
-    NOT_ONLY_BEVERAGE("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
+    INVALID_DATE("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
+    INVALID_ORDER("유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    NOT_ONLY_BEVERAGE("음료만 주문할 수 없습니다. 다시 입력해 주세요.");
 
 
     private static final String PREFIX = "[ERROR] ";
