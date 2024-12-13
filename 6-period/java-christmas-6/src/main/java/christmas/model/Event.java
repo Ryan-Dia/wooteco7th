@@ -10,7 +10,7 @@ public class Event {
     public static final int MAX_DAY_CHRISTMAS_DISCOUNT = 25;
     public static final int PRESENTATION_CRITRION = 120_000;
     public static final int CHRISTMAS_BASE_DISCOUNT_AMOUNT = 1_000;
-    private static final int WEEK_DISCOUNT_AMOUNT = 2_300;
+    private static final int WEEK_DISCOUNT_AMOUNT = 2_023;
 
     public boolean canPresent(int totalAmount) {
         return totalAmount >= PRESENTATION_CRITRION;
@@ -25,9 +25,17 @@ public class Event {
         return new Benefit(christmasDiscount, weekDiscount, canPresent, isWeekday, isSpecialDay);
     }
 
+    public int totalBenefitAmount(VisitDay visitDay, Orders orders) {
+        final int christmasDiscount = calculateChristmasDiscount(visitDay.getVisitDay());
+        final int weekDiscount = calculateWeekDiscount(visitDay, orders);
+        final boolean canPresent = canPresent(orders.getTotalAmount());
+        final boolean isSpecialDay = isSpecialDay(visitDay);
+        return christmasDiscount + weekDiscount + (isSpecialDay ? 1000 : 0) + (canPresent ? 25000 : 0);
+    }
+
     public int calculateChristmasDiscount(int visitDay) {
         if (canChristmasDiscount(visitDay)) {
-            return visitDay * 100 + CHRISTMAS_BASE_DISCOUNT_AMOUNT;
+            return (visitDay - 1) * 100 + CHRISTMAS_BASE_DISCOUNT_AMOUNT;
         }
         return 0;
     }
@@ -52,8 +60,6 @@ public class Event {
     private boolean isSpecialDay(VisitDay visitDay) {
         return visitDay.isSpecialDay();
     }
-
-
 }
 
 

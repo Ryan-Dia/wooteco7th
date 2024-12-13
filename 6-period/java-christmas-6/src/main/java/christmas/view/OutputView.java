@@ -38,7 +38,7 @@ public final class OutputView {
     }
 
     public static void printBenefitInfo(Benefit benefit, int totalAmount) {
-        System.out.println("<혜택 내역>");
+        System.out.println("\n<혜택 내역>");
         if (totalAmount < 10_000) {
             System.out.println("없음");
             return;
@@ -58,7 +58,10 @@ public final class OutputView {
         if (benefit.canPresent()) {
             System.out.println(String.format("증정 이벤트: -25,000원"));
         }
+    }
 
-
+    public static void printTotalBenefitAmount(int totalBenefitAMount) {
+        System.out.println("\n<총혜택 금액>");
+        System.out.printf("-%,d원%n", totalBenefitAMount);
     }
 }
