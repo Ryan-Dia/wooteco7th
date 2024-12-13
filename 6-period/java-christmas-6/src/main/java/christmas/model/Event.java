@@ -4,8 +4,6 @@ import christmas.model.order.Orders;
 import christmas.utils.WeekdayChecker;
 
 public class Event {
-
-
     public static final int MIN_DAY_CHRISTMAS_DISCOUNT = 1;
     public static final int MAX_DAY_CHRISTMAS_DISCOUNT = 25;
     public static final int PRESENTATION_CRITRION = 120_000;
@@ -54,12 +52,12 @@ public class Event {
     public int calculateWeekDiscount(final VisitDay visitDay, Orders orders) {
         if (visitDay.isWeekDay()) {
             return orders.getOrders().stream()
-                    .filter(order -> order.getMenu().getMenuType() == MenuType.DESSERT)
+                    .filter(order -> order.hasDesiredMenuType(MenuType.DESSERT))
                     .mapToInt(order -> order.getQuantity() * WEEK_DISCOUNT_AMOUNT)
                     .sum();
         }
         return orders.getOrders().stream()
-                .filter(order -> order.getMenu().getMenuType() == MenuType.MAIN)
+                .filter(order -> order.hasDesiredMenuType(MenuType.MAIN))
                 .mapToInt(order -> order.getQuantity() * WEEK_DISCOUNT_AMOUNT)
                 .sum();
     }

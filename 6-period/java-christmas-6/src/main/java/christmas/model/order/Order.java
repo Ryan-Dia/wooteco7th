@@ -21,6 +21,10 @@ public class Order {
         NumberValidator.validateRange(quantity, MIN_QUANTITY, MAX_QUANTITY, ErrorMessages.INVALID_ORDER);
     }
 
+    public boolean hasDesiredMenuType(MenuType menuType) {
+        return this.menu.getMenuType() == menuType;
+    }
+
     public boolean isBeverage() {
         return menu.getMenuType() == MenuType.BEVERAGE;
     }
