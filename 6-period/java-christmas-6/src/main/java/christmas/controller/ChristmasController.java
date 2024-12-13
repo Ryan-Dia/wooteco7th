@@ -20,6 +20,7 @@ public class ChristmasController {
         VisitDay visitDay = getVisitDay();
         Orders orders = getOrders();
         OutputView.printOrderMenu(new OrdersDto(orders), visitDay);
+        OutputView.printTotalAmountBeforeDiscount(orders.getTotalAmount());
     }
 
     private VisitDay getVisitDay() {

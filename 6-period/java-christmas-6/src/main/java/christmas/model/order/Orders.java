@@ -6,14 +6,17 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Orders {
-    public static final int MAX_ORDERS_COUNT = 20;
-    public final List<Order> orders;
+    private static final int MAX_ORDERS_COUNT = 20;
+    private final List<Order> orders;
+    private final int totalAmount;
+
 
     public Orders(final List<Order> orders) {
         validateOrderDuplication(orders);
         validateOnlyBeverage(orders);
         validateCount(orders);
         this.orders = orders;
+        this.totalAmount = calculateTotalAmount();
     }
 
     private void validateCount(List<Order> orders) {
@@ -46,7 +49,21 @@ public class Orders {
 
     }
 
+    private int calculateTotalAmount() {
+        return orders.stream().mapToInt(this::calculate).sum();
+    }
+
+    private int calculate(Order order) {
+        final int quantity = order.getQuantity();
+        final int price = order.getMenu().getPrice();
+        return quantity * price;
+    }
+
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
     }
 }

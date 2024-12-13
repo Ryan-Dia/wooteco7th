@@ -21,4 +21,9 @@ public final class OutputView {
             System.out.printf("%s %s개%n", order.menu().getMenuName(), order.quantity());
         }
     }
+
+    public static void printTotalAmountBeforeDiscount(int totalAmount) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.printf("%,d원%n", totalAmount);
+    }
 }
