@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.dto.OrderDto;
 import christmas.dto.OrdersDto;
+import christmas.model.Benefit;
 import christmas.model.VisitDay;
 
 public final class OutputView {
@@ -34,5 +35,30 @@ public final class OutputView {
             return;
         }
         System.out.println("없음");
+    }
+
+    public static void printBenefitInfo(Benefit benefit, int totalAmount) {
+        System.out.println("<혜택 내역>");
+        if (totalAmount < 10_000) {
+            System.out.println("없음");
+            return;
+        }
+        if (benefit.christmasDiscount() != 0) {
+            System.out.println(String.format("크리스마스 디데이 할인: -%,d원", benefit.christmasDiscount()));
+        }
+        if (benefit.isWeekday() && benefit.weekDiscount() != 0) {
+            System.out.println(String.format("평일 할인: -%,d원", benefit.weekDiscount()));
+        }
+        if (!benefit.isWeekday() && benefit.weekDiscount() != 0) {
+            System.out.println(String.format("주말 할인: -%,d원", benefit.weekDiscount()));
+        }
+        if (benefit.isSpecialDay()) {
+            System.out.println("특별 할인: -1,000원");
+        }
+        if (benefit.canPresent()) {
+            System.out.println(String.format("증정 이벤트: -25,000원"));
+        }
+
+
     }
 }
